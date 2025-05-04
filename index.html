@@ -34,15 +34,27 @@
             background-size: 16px 16px;
         }
 
+        .dark-mode {
+            background:
+                radial-gradient(rgba(255, 255, 255, 0.1) 1%, transparent 12%) 0 0,
+                radial-gradient(rgba(255, 255, 255, 0.05) 1%, transparent 12%) 8px 8px,
+                radial-gradient(rgba(0, 0, 0, 0) 15%, transparent 20%) 0 1px,
+                radial-gradient(rgba(0, 0, 0, 0) 15%, transparent 20%) 8px 9px;
+            /* background-color: #FFF; */
+            background-size: 16px 16px;
+        }
+
 
         header {
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 0 2rem;
+            /* padding: 0 2rem; */
             transition: background-color 0.3s;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
             z-index: 1000;
+            display: flex;
+            justify-content: center;
         }
 
         .navbar {
@@ -63,7 +75,8 @@
         .navbar .links {
             display: flex;
             gap: 2rem;
-            margin: 0 auto;
+            /* margin: 0 auto; */
+            margin: 0 6rem 0 0;
         }
 
         .links a.active {
@@ -190,6 +203,7 @@
             position: relative;
             overflow: hidden;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            user-select: none;
         }
 
         .toggle-theme:hover {
@@ -434,7 +448,7 @@
 
         #home {
             position: relative;
-            /* Necesario para posicionar elementos hijos */
+
             width: 100%;
             height: 100vh;
             display: flex;
@@ -442,6 +456,8 @@
             justify-content: center;
             align-items: center;
         }
+
+        /*
 
         .bg-container {
             position: absolute;
@@ -459,9 +475,43 @@
 
         .bg-container.active {
             opacity: 1;
+        } */
+
+        /* CSS Modificado */
+        #home {
+            position: relative;
+            height: 100vh;
+            /* overflow-x: hidden; */
         }
 
-        .overlay {
+        /* .parallax-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+            z-index: -1;
+        } */
+
+        .parallax-image.active {
+            opacity: 1;
+        }
+
+        .bg-dark {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(20, 20, 20, 0.5);
+            z-index: 1;
+        }
+
+
+        /* .overlay {
             position: absolute;
             top: 0;
             left: 0;
@@ -469,7 +519,50 @@
             height: 100%;
             background-color: rgba(20, 20, 20, 0.5);
             z-index: 1;
+        } */
+
+        #home {
+            /* position: relative;
+            height: 100vh; */
+            width: 100%;
+            overflow: hidden;
+            /* Contiene el efecto dentro del contenedor */
         }
+
+        .parallax-image {
+            position: absolute;
+            /* Cambiamos de absolute a fixed */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+            z-index: -1;
+        }
+
+        .overlay {
+            position: absolute;
+            /* Mantiene el overlay fijo */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(20, 20, 20, 0.5);
+            z-index: 1;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            /* background: white; */
+            /* min-height: 100vh; */
+            /* margin-top: 100vh; */
+            /* Empuja el contenido después del #home */
+        }
+        
 
         /* Asegurar que el contenido quede por encima */
         #welcome,
@@ -1050,9 +1143,12 @@
     </header>
 
     <main id="home">
-        <div class="bg-container"></div>
-        <div class="bg-container"></div>
+        <div class="bg-dark">
+            <div class="parallax-image"></div>
+            <div class="parallax-image"></div>
+        </div>
         <div class="overlay"></div>
+        <!-- <div class="home-content"> -->
         <div id="welcome">
             <h1>Welcome</h1>
         </div>
@@ -1060,6 +1156,7 @@
         <div class="arrow-container links">
             <a href="#about"><img src="assets/arrow-down.svg" alt="Arrow" class="arrow-down" /></a>
         </div>
+        <!-- </div> -->
     </main>
 
     <div class="content">
@@ -1073,23 +1170,17 @@
                         social networks and further down a presentation of some projects that are under development.</p>
                     <h2>Bio</h2>
                     <p>I grew up in São Paulo, Brazil. I started in the world of programming at an early age. My first
-                        steps
-                        in
-                        programming logic were thanks to
-                        playing with Scratch and using ArduBlock to develop projects with Arduino. I chose to start with
-                        C
-                        programming between 12 and 13 years old. In the same period I started in the Linux world using
-                        Kali
-                        Linux.
+                        steps in programming logic were thanks to playing with Scratch and using ArduBlock to develop
+                        projects with Arduino. I chose to start with C programming between 12 and 13 years old.
+                        In the same period I started in the Linux world using Kali Linux.
                         I am an enthusiast of the Linux ecosystem.</p>
 
                     <p>Self-taught, I learned about web development and application development
-                        in C, C++ and
-                        Python. At the age of 16 years, I have enhanced my knowledge in web and application development
-                        through my
-                        secondary-level Technical Diploma in Programming. I currently
+                        in C, C++ and Python. At the age of 16 years, I have enhanced my knowledge in web and
+                        application
+                        development through my secondary-level Technical Diploma in Programming. I currently
                         reside in Valdivia, Chile, where I am studying Electronic Engineering
-                        at <a href="https://www.uach.cl/" target="_blank">Universidad Austral de Chile</a>.</p>
+                        at <a href="https://www.uach.cl/" target="_blank">Universidad Austral de Chile</a> (UACh).</p>
 
                     <p>My primary interests lie at the intersection of mathematics and electronics, with a focus on
                         scientific computing, low-level programming and embedded systems. In addition to my technical
@@ -1215,6 +1306,15 @@
                                 href="https://v3.globalgamejam.org/2022/games/viko-ice-and-fire-3"
                                 target="_blank">https://v3.globalgamejam.org/2022/games/viko-ice-and-fire-3</a>
                         </p>
+                    </div>
+                    <div class="box">
+                        <div class="resume-year"><span>2025 - Present</span></div>
+                        <h3>Secretary - IEEE Student Branch UACh</h3>
+                        <p class="resume-institution">Universidad Austral de Chile</p>
+                        <p class="resume-description">I play the role of Secretary of the IEEE Student Branch,
+                            participating in the organization and
+                            registration of academic events, logistical support in workshops and updating dissemination
+                            channels.</p>
                     </div>
                 </div>
             </div>
@@ -1346,73 +1446,192 @@
     <script>
         // JavaScript
         const images = [
-            "assets/DSC03061_aretesatori.JPG",
-            "assets/DSC00255_aretesatori.jpg",
+            "assets/DSC03073_aretesatori.jpg",
+            "assets/DSC01244_aretesatori.jpg",
+            "assets/DSC05455_aretesatori.jpg",
             "assets/DSC06011_aretesatori.jpg",
             "assets/DSC08899_aretesatori.jpg",
-            "assets/DSC01663_aretesatori.jpg",
-            "assets/DSC03073_aretesatori.jpg"
+            "assets/DSC01663_aretesatori.jpg"
         ];
 
-        // Variables de control
-        let currentImageIndex = null;
+        // // Variables de control
+        // let currentImageIndex = null;
+        // let previousImageIndex = null;
+        // let activeContainer = null;
+
+        // // Elementos del DOM
+        // const containers = document.querySelectorAll('.bg-container');
+
+        // // Precarga de imágenes
+        // function preloadImages() {
+        //     images.forEach(src => {
+        //         new Image().src = src;
+        //     });
+        // }
+
+        // // Generar índice aleatorio único
+        // function getRandomUniqueIndex() {
+        //     let newIndex;
+        //     do {
+        //         newIndex = Math.floor(Math.random() * images.length);
+        //     } while (newIndex === currentImageIndex);
+        //     return newIndex;
+        // }
+
+        // // Cambio de fondo con transición
+        // function changeBackground() {
+        //     const [inactiveContainer] = Array.from(containers).filter(container => container !== activeContainer);
+
+        //     // Actualizar índices
+        //     previousImageIndex = currentImageIndex;
+        //     currentImageIndex = getRandomUniqueIndex();
+
+        //     // Aplicar nueva imagen al contenedor inactivo
+        //     inactiveContainer.style.backgroundImage = `url('${images[currentImageIndex]}')`;
+
+        //     // Transición suave
+        //     inactiveContainer.classList.add('active');
+        //     activeContainer.classList.remove('active');
+
+        //     // Actualizar contenedor activo
+        //     activeContainer = inactiveContainer;
+        // }
+
+        // // Inicialización
+        // function initSlideshow() {
+        //     preloadImages();
+
+        //     // Configurar contenedores iniciales
+        //     currentImageIndex = Math.floor(Math.random() * images.length);
+        //     containers[0].style.backgroundImage = `url('${images[currentImageIndex]}')`;
+        //     containers[0].classList.add('active');
+        //     activeContainer = containers[0];
+
+        //     // Iniciar ciclo
+        //     setInterval(changeBackground, 10000);
+        // }
+
+        // // Iniciar el slideshow cuando el documento esté listo
+        // document.addEventListener('DOMContentLoaded', initSlideshow);
+
+        let currentImageIndex = 0; // Inicia con índice 0 (imagen predeterminada)
         let previousImageIndex = null;
         let activeContainer = null;
+        const parallaxImages = document.querySelectorAll('.parallax-image');
+        let isFirstTransition = true; // Nueva bandera para controlar el primer cambio
 
-        // Elementos del DOM
-        const containers = document.querySelectorAll('.bg-container');
-
-        // Precarga de imágenes
         function preloadImages() {
-            images.forEach(src => {
-                new Image().src = src;
-            });
+            // Precargar primero la imagen predeterminada
+            const defaultImage = new Image();
+            defaultImage.src = images[0];
+
+            // Precargar el resto después
+            defaultImage.onload = () => {
+                images.slice(1).forEach(src => {
+                    new Image().src = src;
+                });
+            };
         }
 
-        // Generar índice aleatorio único
         function getRandomUniqueIndex() {
             let newIndex;
             do {
-                newIndex = Math.floor(Math.random() * images.length);
+                newIndex = Math.floor(Math.random() * (images.length - 1)) + 1; // Excluye índice 0 en primer cambio
             } while (newIndex === currentImageIndex);
+
+            // Después del primer cambio, permitir todas las imágenes
+            if (!isFirstTransition) {
+                do {
+                    newIndex = Math.floor(Math.random() * images.length);
+                } while (newIndex === currentImageIndex);
+            }
+
             return newIndex;
         }
 
-        // Cambio de fondo con transición
         function changeBackground() {
-            const [inactiveContainer] = Array.from(containers).filter(container => container !== activeContainer);
+            const inactiveContainer = Array.from(parallaxImages).find(img => !img.classList.contains('active'));
 
-            // Actualizar índices
             previousImageIndex = currentImageIndex;
             currentImageIndex = getRandomUniqueIndex();
 
-            // Aplicar nueva imagen al contenedor inactivo
-            inactiveContainer.style.backgroundImage = `url('${images[currentImageIndex]}')`;
+            // Forzar la imagen predeterminada en el primer cambio
+            if (isFirstTransition) {
+                currentImageIndex = 0;
+                isFirstTransition = false;
+            }
 
-            // Transición suave
+            inactiveContainer.style.backgroundImage = `url('${images[currentImageIndex]}')`;
             inactiveContainer.classList.add('active');
             activeContainer.classList.remove('active');
-
-            // Actualizar contenedor activo
             activeContainer = inactiveContainer;
         }
 
-        // Inicialización
         function initSlideshow() {
+            // Mostrar imagen predeterminada inmediatamente
+            parallaxImages[0].style.backgroundImage = `url('${images[0]}')`;
+            parallaxImages[0].classList.add('active');
+            activeContainer = parallaxImages[0];
+
             preloadImages();
+            applyParallaxEffect();
 
-            // Configurar contenedores iniciales
-            currentImageIndex = Math.floor(Math.random() * images.length);
-            containers[0].style.backgroundImage = `url('${images[currentImageIndex]}')`;
-            containers[0].classList.add('active');
-            activeContainer = containers[0];
-
-            // Iniciar ciclo
-            setInterval(changeBackground, 10000);
+            // Iniciar transiciones después de 10s (tiempo de la primera imagen)
+            setTimeout(() => {
+                setInterval(changeBackground, 10000);
+            }, 10000);
         }
 
-        // Iniciar el slideshow cuando el documento esté listo
+        // JavaScript Modificado
+        function applyParallaxEffect() {
+            let homeHeight = document.getElementById('home').offsetHeight;
+
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.scrollY;
+
+                // Solo aplica parallax mientras estás en la sección #home
+                if (scrollPosition < homeHeight) {
+                    const speed = 0.3;
+                    const offset = scrollPosition * speed;
+                    parallaxImages.forEach(image => {
+                        image.style.transform = `translateY(${offset}px)`;
+                    });
+                }
+            });
+        }
+
+        // // Mantén el resto del código JS anterior sin cambios
+
+        // function changeBackground() {
+        //     const inactiveContainer = Array.from(parallaxImages).find(img => !img.classList.contains('active'));
+
+        //     previousImageIndex = currentImageIndex;
+        //     currentImageIndex = getRandomUniqueIndex();
+
+        //     inactiveContainer.style.backgroundImage = `url('${images[currentImageIndex]}')`;
+        //     inactiveContainer.classList.add('active');
+        //     activeContainer.classList.remove('active');
+        //     activeContainer = inactiveContainer;
+        // }
+
+        // function initSlideshow() {
+        //     preloadImages();
+        //     applyParallaxEffect();
+
+        //     currentImageIndex = Math.floor(Math.random() * images.length);
+        //     parallaxImages[0].style.backgroundImage = `url('${images[currentImageIndex]}')`;
+        //     parallaxImages[0].classList.add('active');
+        //     activeContainer = parallaxImages[0];
+
+        //     setInterval(changeBackground, 10000);
+        // }
+
         document.addEventListener('DOMContentLoaded', initSlideshow);
+
+        window.addEventListener('load', () => {
+            document.body.classList.add('loaded');
+        });
+
 
         document.body.classList.toggle('dark-mode');
 
@@ -1454,14 +1673,42 @@
             const menuLinks = document.querySelectorAll('.links li > a[href^="#"]');
 
             // Highlight active menu item
+            // window.addEventListener('scroll', () => {
+            //     let scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
+
+            //     menuLinks.forEach(link => {
+            //         let section = document.querySelector(link.getAttribute('href'));
+            //         if (!section) return;
+
+            //         if (section.offsetTop <= scrollPosition && (section.offsetTop + section.offsetHeight) > scrollPosition) {
+            //             menuLinks.forEach(item => item.classList.remove('active'));
+            //             link.classList.add('active');
+            //         }
+            //     });
+            // });
             window.addEventListener('scroll', () => {
-                let scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
+                const scrollPosition = window.scrollY;
+                const homeHeight = document.getElementById('home').offsetHeight;
 
                 menuLinks.forEach(link => {
-                    let section = document.querySelector(link.getAttribute('href'));
+                    const section = document.querySelector(link.getAttribute('href'));
                     if (!section) return;
 
-                    if (section.offsetTop <= scrollPosition && (section.offsetTop + section.offsetHeight) > scrollPosition) {
+                    // Ajuste especial para #home
+                    if (section.id === "home") {
+                        const homeBottom = homeHeight;
+                        if (scrollPosition < homeBottom) {
+                            menuLinks.forEach(item => item.classList.remove('active'));
+                            link.classList.add('active');
+                        }
+                        return;
+                    }
+
+                    // Ajuste para otras secciones
+                    const sectionTop = section.offsetTop + homeHeight - 10;
+                    const sectionBottom = sectionTop + section.offsetHeight;
+
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
                         menuLinks.forEach(item => item.classList.remove('active'));
                         link.classList.add('active');
                     }
